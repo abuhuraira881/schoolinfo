@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - School Info Portal</title>
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <!-- Google Fonts (Poppins) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5 CSS CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+
+    <!-- Font Awesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- AOS (Animate On Scroll) CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <!-- Custom CSS Styling -->
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --secondary-color: #0c63e4;
+            --accent-color: #00d2ff;
+            --dark-bg: #0f172a;
+            --light-bg: #f8fafc;
+            --text-color: #334155;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navbar Styling */
+        .header_wrapper {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand img {
+            max-height: 50px;
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-brand img:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--text-color) !important;
+            margin: 0 5px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        .main-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: #fff !important;
+            padding: 8px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(13, 110, 253, 0.3);
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .main-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(13, 110, 253, 0.5);
+        }
+
+        /* Hero Banner Section */
+        .hero-banner {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(13, 110, 253, 0.8)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200') center/cover no-repeat;
+            color: white;
+            padding: 80px 0 60px;
+            text-align: center;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            margin-bottom: 50px;
+        }
+
+        .hero-banner h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        /* Contact Info Cards */
+        .info-card {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s ease;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .info-icon {
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, rgba(13, 110, 253, 0.1), rgba(0, 210, 255, 0.2));
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover .info-icon {
+            background: var(--primary-color);
+            color: #fff;
+            transform: rotateY(180deg);
+        }
+
+        .info-content h5 {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .info-content p, .info-content a {
+            color: #64748b;
+            text-decoration: none;
+            margin-bottom: 0;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .info-content a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Form Styling */
+        .form-wrapper {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+
+        .form-floating input, .form-floating textarea {
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 15px;
+        }
+
+        .form-floating input:focus, .form-floating textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px rgba(13, 110, 253, 0.15);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(13, 110, 253, 0.5);
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+        }
+
+        /* Map Section */
+        .map-wrapper {
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            border: 5px solid #fff;
+            height: 100%;
+            min-height: 400px;
+        }
+
+        .map-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Footer Styling */
+        .footer_wrapper {
+            background-color: var(--dark-bg);
+            color: #94a3b8;
+            padding-top: 70px;
+            margin-top: 80px;
+        }
+
+        .footer_wrapper h5 {
+            color: #ffffff;
+            font-weight: 600;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .footer_wrapper h5::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 40px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .footer_wrapper ul {
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .footer_wrapper ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer_wrapper ul li a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer_wrapper ul li a:hover {
+            color: #ffffff;
+            padding-left: 5px;
+        }
+
+        .social-network li {
+            display: inline-block;
+            margin-right: 12px;
+        }
+
+        .social-network a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: #fff !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .social-network a:hover {
+            background: var(--primary-color);
+            transform: translateY(-50px) scale(1.1);
+            transform: translateY(-5px);
+        }
+
+        .copyright-section {
+            background-color: #090d16;
+            padding: 20px 0;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .copyright-section p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .hero-banner h1 {
+                font-size: 2rem;
+            }
+            .form-wrapper {
+                padding: 25px;
+            }
+            .map-wrapper {
+                min-height: 300px;
+                margin-top: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header / Navbar Section -->
+    <header class="header_wrapper">
+        <nav class="navbar navbar-expand-lg py-3">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center gap-2" href="../index.html">
+                    <img decoding="async" src="../imgs/logo.1__1_-removebg-preview.png" alt="logo" onerror="this.src='https://via.placeholder.com/150x50?text=School+Logo'">
+                    <span class="fw-bold text-primary fs-4">SCHOOL INFO</span>
+                </a>
+                <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars fs-3 text-primary"></i>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav align-items-center gap-2">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Schools
+                            </a>
+                            <ul class="dropdown-menu border-0 shadow-lg" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item py-2" href="kgs.html">Karachi Grammar School</a></li>
+                                <li><hr class="dropdown-divider my-1"></li>
+                                <li><a class="dropdown-item py-2" href="bvs.html">BVS Parsi High School</a></li>
+                                <li><hr class="dropdown-divider my-1"></li>
+                                <li><a class="dropdown-item py-2" href="hhs.html">Happy Home School</a></li>
+                                <li><hr class="dropdown-divider my-1"></li>
+                                <li><a class="dropdown-item py-2" href="smart.html">The Smart School</a></li>
+                                <li><hr class="dropdown-divider my-1"></li>
+                                <li><a class="dropdown-item py-2" href="city.html">The City School</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                            <a class="main-btn" href="contact.html">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Banner Section -->
+    <section class="hero-banner" data-aos="fade-down" data-aos-duration="1000">
+        <div class="container">
+            <h1>Get In Touch With Us</h1>
+            <p class="lead opacity-75">We are here to answer any questions you may have about our educational portal.</p>
+        </div>
+    </section>
+
+    <!-- Main Content Area -->
+    <div class="container">
+
+        <!-- Contact Info Cards Grid -->
+        <div class="row g-4 mb-5">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="info-content">
+                        <h5>Location</h5>
+                        <p>Jameel Jalabi Road, Block-B, North Nazimabad, Karachi, Pakistan</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="info-content">
+                        <h5>Call Us</h5>
+                        <p><a href="tel:+92422141644">+92 42-2141644</a></p>
+                        <p><a href="tel:+923001234567">+92 300-1234567</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="info-content">
+                        <h5>Email Us</h5>
+                        <p><a href="mailto:schoolinfo@gmail.com">schoolinfo@gmail.com</a></p>
+                        <p><a href="mailto:support@schoolinfo.com">support@schoolinfo.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form and Map Section Split -->
+        <div class="row g-4 align-items-stretch mb-5">
+            
+            <!-- Contact Form -->
+            <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
+                <div class="form-wrapper">
+                    <h3 class="fw-bold mb-2">Send Us A Message</h3>
+                    <p class="text-muted mb-4">Fill out the form below and our team will get back to you within 24 hours.</p>
+                    
+                    <form id="contactForm">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="nameInput" placeholder="Your Name" required>
+                            <label for="nameInput"><i class="far fa-user me-2 text-primary"></i>Your Name</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="emailInput" placeholder="name@example.com" required>
+                            <label for="emailInput"><i class="far fa-envelope me-2 text-primary"></i>Your Email</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="tel" class="form-control" id="phoneInput" placeholder="Mobile Number" required>
+                            <label for="phoneInput"><i class="fas fa-phone me-2 text-primary"></i>Your Mobile Number</label>
+                        </div>
+                        <div class="form-floating mb-4">
+                            <textarea class="form-control" placeholder="Leave a message here" id="messageInput" style="height: 140px" required></textarea>
+                            <label for="messageInput"><i class="far fa-comment-dots me-2 text-primary"></i>Your Message</label>
+                        </div>
+                        <button type="submit" class="submit-btn d-flex align-items-center justify-content-center gap-2">
+                            <span>Send Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Google Map -->
+            <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000">
+                <div class="map-wrapper">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3618.136868351509!2d67.03357531500424!3d24.92742998402242!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33f9012423711%3A0xb33887b469e3a6ed!2sNorth%20Nazimabad%20Town%2C%20Karachi%2C%20Pakistan!5e0!3m2!1sen!2s!4v1680000000000!5m2!1sen!2s" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer_wrapper">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <h5>School Info</h5>
+                    <ul class="list-unstyled">
+                        <li class="d-flex align-items-start gap-2 mb-3">
+                            <i class="fa fa-map-marker-alt text-primary mt-1"></i>
+                            <span>Jameel Jalabi Road, Block-B, North Nazimabad, Karachi, Sindh, Pakistan</span>
+                        </li>
+                        <li class="d-flex align-items-center gap-2 mb-3">
+                            <i class="fa fa-phone text-primary"></i>
+                            <span>+92 42-2141644</span>
+                        </li>
+                        <li class="d-flex align-items-center gap-2">
+                            <i class="fa fa-envelope text-primary"></i>
+                            <span>schoolinfo@gmail.com</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>More Links</h5>
+                    <ul>
+                        <li><a href="../index.html"><i class="fas fa-chevron-right me-2 text-primary fs-6"></i>Home</a></li>
+                        <li><a href="#about"><i class="fas fa-chevron-right me-2 text-primary fs-6"></i>About Schools</a></li>
+                        <li><a href="#gallery"><i class="fas fa-chevron-right me-2 text-primary fs-6"></i>Our Gallery</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right me-2 text-primary fs-6"></i>Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>Top Schools</h5>
+                    <ul>
+                        <li><a href="bvs.html"><i class="fas fa-school me-2 text-primary fs-6"></i>BVS High School</a></li>
+                        <li><a href="kgs.html"><i class="fas fa-school me-2 text-primary fs-6"></i>Karachi Grammar School</a></li>
+                        <li><a href="city.html"><i class="fas fa-school me-2 text-primary fs-6"></i>The City School</a></li>
+                        <li><a href="smart.html"><i class="fas fa-school me-2 text-primary fs-6"></i>The Smart School</a></li>
+                        <li><a href="hhs.html"><i class="fas fa-school me-2 text-primary fs-6"></i>Happy Home School</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>Stay Connected</h5>
+                    <p class="small text-muted mb-3">Follow us on social media platforms for quick updates.</p>
+                    <ul class="social-network">
+                        <li><a target="_blank" href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a target="_blank" href="https://www.twitter.com"><i class="fab fa-twitter"></i></a></li>
+                        <li><a target="_blank" href="https://www.instagram.com"><i class="fab fa-instagram"></i></a></li>
+                        <li><a target="_blank" href="https://www.linkedin.com"><i class="fab fa-linkedin-in"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid copyright-section text-center">
+            <p>&copy; 2026 <a href="#" class="text-white text-decoration-none fw-bold">Information School</a>. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JS CDN Links -->
+    <!-- Bootstrap 5 Bundle JS (Includes Popper) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <!-- AOS Animation Library JS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script>
+        // Initialize AOS Animations
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100
+        });
+
+        // Form Submit Interactive Animation/Handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalContent = submitBtn.innerHTML;
+
+            // Button loading state
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+                alert('Thank you! Your message has been sent successfully.');
+                this.reset();
+                submitBtn.innerHTML = originalContent;
+                submitBtn.disabled = false;
+            }, 1500);
+        });
+    </script>
+</body>
+
+</html>

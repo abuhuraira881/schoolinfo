@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>The Smart School</title>
+    
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <!-- Bootstrap 5 CDN Links -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+    <!-- AOS (Animate On Scroll) Animations CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+    <!-- Custom File's Link -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive-style.css">
+
+    <style>
+        /* ============================================================ */
+        /* GLOBAL RESPONSIVE & PROFESSIONAL STYLING */
+        /* ============================================================ */
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden !important;
+            background-color: #f4f7f6;
+            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* HEAVY ANIMATED NAVBAR */
+        .header_wrapper.sticky-top {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.4s ease-in-out;
+            animation: navbarSlideDown 0.8s ease-out;
+            z-index: 1030;
+        }
+
+        @keyframes navbarSlideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .navbar-brand img {
+            transition: transform 0.4s ease;
+            max-height: 48px;
+        }
+
+        .navbar-brand:hover img {
+            transform: rotate(-6deg) scale(1.05);
+        }
+
+        .menu-navbar-nav .nav-link {
+            position: relative;
+            padding: 8px 14px !important;
+            font-weight: 600;
+            color: #495057;
+            transition: color 0.3s ease;
+        }
+
+        .menu-navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 50%;
+            background: linear-gradient(90deg, #0d6efd, #0b5ed7);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transform: translateX(-50%);
+            border-radius: 4px;
+        }
+
+        .menu-navbar-nav .nav-link:hover::after,
+        .menu-navbar-nav .nav-link.active::after {
+            width: 80%;
+        }
+
+        .menu-navbar-nav .nav-link:hover {
+            color: #0d6efd;
+        }
+
+        .dropdown-menu {
+            animation: dropdownFade 0.4s ease;
+            border-radius: 12px;
+        }
+
+        @keyframes dropdownFade {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ================= BANNER & SWIPER SECTION ================= */
+        .banner_wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            height: 75vh;
+            min-height: 450px;
+            max-height: 700px;
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        .slide-caption {
+            background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.78) 100%);
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            padding: 0 20px;
+        }
+
+        .swiper-pagination-bullet-active {
+            background-color: #0d6efd !important;
+            width: 25px !important;
+            border-radius: 10px !important;
+        }
+
+        .swiper-pagination-bullet {
+            transition: all 0.3s ease;
+        }
+
+        /* FACULTY CARD & IMAGE STYLING */
+        .faculty-card {
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            background: #ffffff;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: visible !important;
+            margin-top: 45px;
+        }
+
+        .faculty-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(13, 110, 253, 0.18);
+        }
+
+        .faculty-img-wrapper {
+            position: relative;
+            margin-top: -55px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .faculty-img {
+            width: 130px;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid #ffffff;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background-color: #f8f9fa;
+        }
+
+        .faculty-card:hover .faculty-img {
+            transform: scale(1.08) translateY(-3px);
+            border-color: #0d6efd !important;
+            box-shadow: 0 10px 25px rgba(13, 110, 253, 0.4);
+        }
+
+        .info-card {
+            border: none;
+            border-top: 4px solid #0d6efd;
+            border-radius: 16px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+            background: #fff;
+            height: 100%;
+            transition: all 0.4s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+        }
+
+        /* Admission Timeline Styling */
+        .timeline-card {
+            background: #ffffff;
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(13, 110, 253, 0.18);
+        }
+
+        .timeline-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #0d6efd, #0b5ed7);
+            color: #fff;
+            font-size: 1.3rem;
+            font-weight: 700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(13, 110, 253, 0.3);
+            transition: transform 0.4s ease;
+            flex-shrink: 0;
+        }
+
+        .timeline-card:hover .timeline-number {
+            transform: scale(1.1) rotate(360deg);
+        }
+
+        /* Pricing Card Styling */
+        .pricing-card {
+            background: #ffffff;
+            border: 2px solid #e9ecef;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.04);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            border-color: #0d6efd;
+            box-shadow: 0 18px 40px rgba(13, 110, 253, 0.18);
+        }
+
+        .pricing-card.popular {
+            border-color: #0d6efd;
+            background: #ffffff;
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -14px;
+            right: 20px;
+            background: linear-gradient(135deg, #0d6efd, #004085);
+            color: #fff;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(13, 110, 253, 0.3);
+        }
+
+        .price-tag {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #0d6efd;
+        }
+
+        /* INTERACTIVE GALLERY STYLING */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 18px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+            cursor: pointer;
+            background-color: #0d6efd;
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(13, 110, 253, 0.35);
+        }
+
+        .gallery-item img {
+            transition: transform 0.7s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.5s ease;
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.12);
+            filter: brightness(0.85);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(13, 110, 253, 0.92), rgba(0, 0, 0, 0.3));
+            backdrop-filter: blur(2px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            transform: translateY(20px);
+            color: #fff;
+            text-align: center;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Pulse Glow Animation for CTA Buttons */
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(13, 110, 253, 0.6); }
+            70% { box-shadow: 0 0 0 12px rgba(13, 110, 253, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(13, 110, 253, 0); }
+        }
+
+        .pulse-btn {
+            animation: pulse-glow 2s infinite;
+        }
+
+        .footer_wrapper {
+            background-color: #1a1d20;
+            color: #ccc;
+        }
+
+        .footer_wrapper a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer_wrapper a:hover {
+            color: #fff;
+        }
+
+        /* ============================================================ */
+        /* COMPREHENSIVE RESPONSIVE MEDIA QUERIES (MOBILE, TABLET, PC) */
+        /* ============================================================ */
+
+        /* Mobile & Tablet Navigation Menu Fix (under 992px) */
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                background-color: #ffffff;
+                padding: 18px;
+                border-radius: 14px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+                margin-top: 10px;
+                max-height: 80vh;
+                overflow-y: auto;
+            }
+
+            .menu-navbar-nav .nav-link {
+                padding: 10px 12px !important;
+                border-bottom: 1px solid #f1f1f1;
+            }
+
+            .menu-navbar-nav .nav-link::after {
+                display: none;
+            }
+
+            /* FIX FOR MOBILE DROPDOWN SHOWING IN COLLAPSE */
+            .navbar-nav .dropdown-menu {
+                position: static !important;
+                float: none !important;
+                width: 100% !important;
+                box-shadow: none !important;
+                background-color: #f8f9fa !important;
+                border: 1px solid #e9ecef !important;
+                margin-top: 5px !important;
+                margin-bottom: 8px !important;
+                padding-left: 15px !important;
+            }
+        }
+
+        /* Mobile Adjustments (under 576px) */
+        @media (max-width: 575.98px) {
+            body {
+                font-size: 14px;
+            }
+
+            .navbar-brand span {
+                font-size: 1.1rem;
+            }
+
+            .navbar-brand img {
+                max-height: 38px;
+            }
+
+            .swiper-slide {
+                height: 60vh;
+                min-height: 380px;
+            }
+
+            .slide-caption h1.display-4 {
+                font-size: 1.4rem !important;
+                line-height: 1.3;
+            }
+
+            .slide-caption p.lead {
+                font-size: 0.85rem !important;
+                margin-bottom: 1.2rem !important;
+            }
+
+            .slide-caption .btn {
+                font-size: 0.85rem;
+                padding: 10px 20px !important;
+            }
+
+            .faculty-card {
+                margin-top: 45px;
+            }
+
+            .faculty-img {
+                width: 110px;
+                height: 110px;
+            }
+
+            .faculty-img-wrapper {
+                margin-top: -45px;
+            }
+
+            .gallery-item img {
+                height: 200px;
+            }
+
+            .gallery-overlay {
+                opacity: 0.92;
+                transform: translateY(0);
+                background: linear-gradient(to top, rgba(13, 110, 253, 0.85), rgba(0, 0, 0, 0.3));
+                padding: 12px;
+            }
+
+            .price-tag {
+                font-size: 1.6rem;
+            }
+
+            .action-btn-wrapper {
+                width: 100%;
+                flex-direction: column;
+                gap: 10px !important;
+            }
+
+            .action-btn-wrapper .btn {
+                width: 100%;
+            }
+
+            .map-ratio {
+                aspect-ratio: 4/3;
+            }
+        }
+
+        /* Small Tablets (576px to 767.98px) */
+        @media (min-width: 576px) and (max-width: 767.98px) {
+            .swiper-slide {
+                height: 65vh;
+                min-height: 400px;
+            }
+
+            .slide-caption h1.display-4 {
+                font-size: 2rem !important;
+            }
+
+            .gallery-item img {
+                height: 220px;
+            }
+
+            .map-ratio {
+                aspect-ratio: 16/9;
+            }
+        }
+
+        /* Medium Tablets & iPads (768px to 991.98px) */
+        @media (min-width: 768px) and (max-width: 991.98px) {
+            .swiper-slide {
+                height: 68vh;
+                min-height: 420px;
+            }
+
+            .slide-caption h1.display-4 {
+                font-size: 2.3rem !important;
+            }
+
+            .gallery-item img {
+                height: 240px;
+            }
+
+            .map-ratio {
+                aspect-ratio: 16/9;
+            }
+        }
+
+        /* Laptops & Standard Desktops (992px and above) */
+        @media (min-width: 992px) {
+            .swiper-slide {
+                height: 75vh;
+                min-height: 480px;
+            }
+
+            .map-ratio {
+                aspect-ratio: 21/9;
+            }
+        }
+    </style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="100">
+    
+    <!-- Navbar section -->
+    <header class="header_wrapper sticky-top bg-white">
+        <nav class="navbar navbar-expand-lg navbar-light py-2">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" href="../index.html">
+                    <img decoding="async" src="../imgs/logo.1__1_-removebg-preview.png" class="img-fluid me-2" alt="logo" onError="this.src='https://via.placeholder.com/150x50?text=Smart+Logo';">
+                    <span class="h4 mb-0 fw-bold text-primary">SCHOOL INFO</span>
+                </a>
+                <button class="navbar-toggler border-0 shadow-none p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars text-primary fs-3"></i>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav menu-navbar-nav align-items-lg-center">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#admission">Admissions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#fees">Fee Details</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#faculty">Faculty</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#gallery">Gallery</a>
+                        </li>
+
+                        <!-- FIXED DROPDOWN FOR MOBILE & DESKTOP -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Schools
+                            </a>
+                            <ul class="dropdown-menu shadow border-0" aria-labelledby="navbarDropdown">
+                              <li><a class="dropdown-item py-2" href="kgs.html">Karachi Grammar School</a></li>
+                              <li><hr class="dropdown-divider my-1"></li>
+                              <li><a class="dropdown-item py-2" href="bvs.html">Bai Virbaiji Soparivala Parsi High School</a></li>
+                              <li><hr class="dropdown-divider my-1"></li>
+                              <li><a class="dropdown-item py-2" href="hhs.html">Happy Home School</a></li>
+                              <li><hr class="dropdown-divider my-1"></li>
+                              <li><a class="dropdown-item py-2" href="smart.html">The Smart School</a></li>
+                              <li><hr class="dropdown-divider my-1"></li>
+                              <li><a class="dropdown-item py-2" href="city.html">The City School</a></li>
+                            </ul>
+                        </li>       
+                        
+                        <li class="nav-item my-2 my-lg-0 ms-lg-2">
+                            <button class="btn btn-primary rounded-pill px-4 shadow-sm pulse-btn w-100 w-lg-auto" data-bs-toggle="modal" data-bs-target="#modalApplyOnline">
+                                <i class="fas fa-paper-plane me-1"></i> Apply Now
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- Navbar section exit -->
+
+    <!-- Banner section (Fixed & Fully Responsive) -->
+    <section id="home" class="banner_wrapper p-0">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" style="background-image: url('../imgs/smart.jpeg');">
+                    <div class="slide-caption text-center">
+                        <div class="container" data-aos="zoom-in" data-aos-duration="1000">
+                            <h1 class="display-4 fw-bold text-white mb-2 mb-md-3">Welcome to The Smart School</h1>
+                            <p class="lead text-light mb-3 mb-md-4 max-width-700 mx-auto">"Where Learning Meets Excellence. Technology-driven learning empowering students to achieve global success."</p>
+                            <button class="btn btn-primary btn-lg rounded-pill px-4 px-md-5 shadow pulse-btn" data-bs-toggle="modal" data-bs-target="#modalApplyOnline">
+                                <i class="fas fa-edit me-2"></i> Online Admission Form
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide" style="background-image: url('../imgs/smart\ 1.jpeg');">
+                    <div class="slide-caption text-center">
+                        <div class="container" data-aos="fade-up" data-aos-duration="1000">
+                            <h1 class="display-4 fw-bold text-white mb-2 mb-md-3">Smart Future Leaders</h1>
+                            <p class="lead text-light mb-3 mb-md-4 max-width-700 mx-auto">"Inspiring a Future of Innovation, Leadership, and Digital Integrity."</p>
+                            <a href="#admission" class="btn btn-outline-light btn-lg rounded-pill px-4 px-md-5">
+                                <i class="fas fa-info-circle me-1"></i> Admissions Guidelines
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+    <!-- Banner section exit -->
+
+    <!-- Info Cards Section -->
+    <section class="py-4 py-md-5" id="about">
+        <div class="container">
+            <div class="text-center mb-4 mb-md-5" data-aos="fade-up">
+                <h2 class="fw-bold text-primary h3 fs-2-md">Information About The Smart School</h2>
+                <div class="mx-auto" style="width: 80px; height: 3px; background-color: #0d6efd;"></div>
+            </div>
+            
+            <div class="row g-3 g-md-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-right" data-aos-delay="100">
+                    <div class="card info-card p-3 p-md-4">
+                        <h4 class="card-title text-primary fs-5"><i class="fas fa-laptop-code me-2"></i>Facilities</h4>
+                        <p class="card-text small text-muted">Provides a cutting-edge, technology-driven learning environment. Classrooms equipped with interactive smart boards, computer labs with modern technology, e-learning resources, library, and sports grounds for physical activities.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card info-card p-3 p-md-4" style="border-top-color: #198754;">
+                        <h4 class="card-title text-success fs-5"><i class="fas fa-scroll me-2"></i>Policies</h4>
+                        <p class="card-text small text-muted">Focuses on a child-centered approach with personalized instruction. Emphasizes discipline, punctuality, and respect, with regular progress tracking, parent reports, and co-curricular encouragement.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-left" data-aos-delay="300">
+                    <div class="card info-card p-3 p-md-4" style="border-top-color: #ffc107;">
+                        <h4 class="card-title text-warning fs-5"><i class="fas fa-user-check me-2"></i>Eligibility</h4>
+                        <p class="card-text small text-muted">Offers education from Pre-School through Secondary school levels. Admission process includes entrance test and interview based on age suitability and academic performance.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= ADMISSION PROCESS SECTION ================= -->
+    <section class="py-4 py-md-5 bg-white" id="admission">
+        <div class="container">
+            <div class="text-center mb-4 mb-md-5" data-aos="fade-up">
+                <span class="badge bg-primary-subtle text-primary fw-bold px-3 py-2 rounded-pill mb-2">ADMISSIONS PORTAL</span>
+                <h2 class="fw-bold text-dark h3 fs-2-md">The Smart School Admission Policy</h2>
+                <p class="text-muted small">Step-by-step registration guide for Pre-School, Primary & Secondary Sections</p>
+                <div class="mx-auto" style="width: 80px; height: 3px; background-color: #0d6efd;"></div>
+            </div>
+
+            <!-- 4-Step Timeline -->
+            <div class="row g-3 g-md-4 mb-4 mb-md-5">
+                <div class="col-lg-3 col-sm-6" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="card timeline-card p-3 p-md-4 h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="timeline-number me-3">1</div>
+                            <h6 class="fw-bold text-dark mb-0 fs-6">Online Form</h6>
+                        </div>
+                        <p class="small text-muted mb-0">Fill in candidate details via the online admission portal or collect the form from campus administration.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="card timeline-card p-3 p-md-4 h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="timeline-number me-3">2</div>
+                            <h6 class="fw-bold text-dark mb-0 fs-6">Document Verification</h6>
+                        </div>
+                        <p class="small text-muted mb-0">Submit copies of candidate's B-Form, parents' CNIC, passport photos, and previous school report cards.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="card timeline-card p-3 p-md-4 h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="timeline-number me-3">3</div>
+                            <h6 class="fw-bold text-dark mb-0 fs-6">Smart Entrance Test</h6>
+                        </div>
+                        <p class="small text-muted mb-0">Candidates appear for a written assessment in English, Mathematics, and Science/Urdu.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="card timeline-card p-3 p-md-4 h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="timeline-number me-3">4</div>
+                            <h6 class="fw-bold text-dark mb-0 fs-6">Interview & Deposit</h6>
+                        </div>
+                        <p class="small text-muted mb-0">Brief parent/student interaction followed by fee voucher generation for seat confirmation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grade Eligibility & Entrance Exam Table -->
+            <div class="card border-0 shadow-sm rounded-4 p-3 p-md-4 mb-4 mb-md-5 bg-light" data-aos="fade-up">
+                <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+                    <h4 class="fw-bold text-dark mb-0 fs-5"><i class="fas fa-user-graduate text-primary me-2"></i>Age Eligibility & Assessment Table</h4>
+                    <span class="text-muted small"><i class="fas fa-calendar-alt me-1"></i> Academic Session 2026-2027</span>
+                </div>
+                
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0 bg-white rounded-3 shadow-sm overflow-hidden text-nowrap">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Grade / Level</th>
+                                <th>Age Criteria (As of August)</th>
+                                <th>Assessment Subjects</th>
+                                <th>Board Curriculum</th>
+                            </tr>
+                        </thead>
+                        <tbody class="small">
+                            <tr>
+                                <td class="fw-bold text-primary">Pre-School (Playgroup / KG)</td>
+                                <td>3.0 to 4.5 Years</td>
+                                <td>Informal Assessment & Observation</td>
+                                <td><span class="badge bg-warning text-dark">Early Years Smart Curriculum</span></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-primary">Grades 1 to 5 (Primary)</td>
+                                <td>5.5 to 10.0 Years</td>
+                                <td>English, Mathematics, Urdu</td>
+                                <td><span class="badge bg-info text-dark">Primary Smart Stream</span></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-success">Grades 6 to 10 (Secondary)</td>
+                                <td>10.5+ Years</td>
+                                <td>English, Math, Science, Urdu</td>
+                                <td><span class="badge bg-success">Board of Secondary Education</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Quick Action Bar -->
+            <div class="bg-primary text-white p-3 p-md-4 rounded-4 shadow d-flex align-items-center justify-content-between flex-wrap gap-3" data-aos="zoom-in">
+                <div>
+                    <h4 class="fw-bold mb-1 fs-5"><i class="fas fa-file-check me-2"></i>Apply for Admission at The Smart School</h4>
+                    <p class="mb-0 opacity-75 small">Submit application details online or review mandatory document requirements.</p>
+                </div>
+                <div class="d-flex action-btn-wrapper gap-2 mt-2 mt-lg-0">
+                    <button class="btn btn-light text-primary fw-bold rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#modalAdmissionDocs">
+                        <i class="fas fa-paperclip me-1"></i> Document Checklist
+                    </button>
+                    <button class="btn btn-warning fw-bold text-dark rounded-pill px-4 pulse-btn" data-bs-toggle="modal" data-bs-target="#modalApplyOnline">
+                        <i class="fas fa-edit me-1"></i> Apply Online Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FEES STRUCTURE & PAYMENT SECTION ================= -->
+    <section class="py-4 py-md-5 bg-light" id="fees">
+        <div class="container">
+            <div class="text-center mb-4 mb-md-5" data-aos="fade-up">
+                <span class="badge bg-success-subtle text-success fw-bold px-3 py-2 rounded-pill mb-2">FEE SCHEDULE & POLICY</span>
+                <h2 class="fw-bold text-dark h3 fs-2-md">Class-Wise Fee Structure & Digital Payment</h2>
+                <p class="text-muted small">Standardized board-approved tuition fees and payment guidelines</p>
+                <div class="mx-auto" style="width: 80px; height: 3px; background-color: #0d6efd;"></div>
+            </div>
+
+            <!-- 3 Modern Pricing Cards -->
+            <div class="row g-3 g-md-4 mb-4 mb-md-5">
+                <!-- Pre-School Card -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card pricing-card p-3 p-md-4 h-100">
+                        <div class="text-center border-bottom pb-3 mb-3">
+                            <span class="badge bg-info text-dark px-3 py-1 rounded-pill mb-2">Early Years</span>
+                            <h4 class="fw-bold text-dark fs-5">Pre-School Section</h4>
+                            <div class="price-tag mt-2">PKR 6,500 <span class="fs-6 text-muted font-normal">/ month</span></div>
+                        </div>
+                        <ul class="list-unstyled small text-secondary lh-lg mb-4">
+                            <li><i class="fas fa-check text-success me-2"></i>One-Time Admission Fee: <strong>PKR 15,000</strong></li>
+                            <li><i class="fas fa-check text-success me-2"></i>Annual Charges: <strong>PKR 4,500 / year</strong></li>
+                            <li><i class="fas fa-check text-success me-2"></i>Interactive Learning Kits Included</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Activity & Sports Area Access</li>
+                        </ul>
+                        <button class="btn btn-outline-primary rounded-pill w-100 mt-auto" data-bs-toggle="modal" data-bs-target="#modalApplyOnline">Apply for Pre-School</button>
+                    </div>
+                </div>
+
+                <!-- Primary Card (Popular) -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card pricing-card popular p-3 p-md-4 h-100">
+                        <div class="popular-badge">Smart Stream</div>
+                        <div class="text-center border-bottom pb-3 mb-3">
+                            <span class="badge bg-success px-3 py-1 rounded-pill mb-2">Grades 1 to 5</span>
+                            <h4 class="fw-bold text-dark fs-5">Primary Section</h4>
+                            <div class="price-tag mt-2">PKR 7,500 <span class="fs-6 text-muted font-normal">/ month</span></div>
+                        </div>
+                        <ul class="list-unstyled small text-secondary lh-lg mb-4">
+                            <li><i class="fas fa-check text-success me-2"></i>One-Time Admission Fee: <strong>PKR 18,000</strong></li>
+                            <li><i class="fas fa-check text-success me-2"></i>Annual Charges: <strong>PKR 5,500 / year</strong></li>
+                            <li><i class="fas fa-check text-success me-2"></i>Smart Board Classroom Technology</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Computer Lab & E-Learning Tools</li>
+                        </ul>
+                        <button class="btn btn-primary rounded-pill w-100 mt-auto shadow-sm" data-bs-toggle="modal" data-bs-target="#modalApplyOnline">Apply for Primary</button>
+                    </div>
+                </div>
+
+                <!-- Secondary Card -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card pricing-card p-3 p-md-4 h-100">
+                        <div class="text-center border-bottom pb-3 mb-3">
+                            <span class="badge bg-primary px-3 py-1 rounded-pill mb-2">Grades 6 to 10</span>
+                            <h4 class="fw-bold text-dark fs-5">Secondary Section</h4>
+                            <div class="price-tag mt-2">PKR 8,800 <span class="fs-6 text-muted font-normal">/ month</span></div>
+                        </div>
+                        <ul class="list-unstyled small text-secondary lh-lg mb-4">
+                            <li><i class="fas fa-check text-success me-2"></i>One-Time Admission Fee: <strong>PKR 22,000</strong></li>
+                            <li><i class="fas fa-check text-success me-2"></i>Annual Charges: <strong>PKR 6,500 / year</strong></li>
+                            <li><i class="fas fa-check text-success me-2"></i>Full Science & IT Laboratory Access</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Board Exam Preparation Tools</li>
+                        </ul>
+                        <button class="btn btn-outline-primary rounded-pill w-100 mt-auto" data-bs-toggle="modal" data-bs-target="#modalApplyOnline">Apply for Secondary</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Digital Payment & Policy FAQs Row -->
+            <div class="row g-3 g-md-4">
+                <!-- Digital Fee Payment Methods -->
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="card border-0 rounded-4 shadow-sm p-3 p-md-4 h-100 bg-white">
+                        <h4 class="fw-bold text-dark mb-3 fs-5"><i class="fas fa-mobile-alt text-primary me-2"></i>Digital Fee Payment Channels</h4>
+                        <p class="text-muted small">Monthly fee e-vouchers are issued automatically via SMS & Email link:</p>
+
+                        <div class="d-flex align-items-start mb-3 bg-light p-3 rounded-3">
+                            <div class="bg-primary text-white p-2 p-md-3 rounded-circle me-3 flex-shrink-0"><i class="fas fa-university fs-5"></i></div>
+                            <div>
+                                <h6 class="fw-bold text-dark mb-1 small">1. EasyPaisa / JazzCash / 1Bill Payment</h6>
+                                <p class="small text-muted mb-0">Pay online via Mobile Wallet Apps / 1Bill under <strong>The Smart School</strong> using Student ID.</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-start bg-light p-3 rounded-3">
+                            <div class="bg-success text-white p-2 p-md-3 rounded-circle me-3 flex-shrink-0"><i class="fas fa-money-bill-wave fs-5"></i></div>
+                            <div>
+                                <h6 class="fw-bold text-dark mb-1 small">2. Over-the-Counter Deposit</h6>
+                                <p class="small text-muted mb-0">Deposit cash directly at designated Bank Alfalah or Meezan Bank branches using printed e-vouchers.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fee Policy FAQ Accordion -->
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="card border-0 rounded-4 shadow-sm p-3 p-md-4 h-100 bg-white">
+                        <h4 class="fw-bold text-dark mb-3 fs-5"><i class="fas fa-question-circle text-primary me-2"></i>Fee Policy FAQs</h4>
+                        
+                        <div class="accordion accordion-flush" id="feeFAQ">
+                            <div class="accordion-item border-bottom">
+                                <h2 class="accordion-header" id="faqOne">
+                                    <button class="accordion-button collapsed fw-bold text-dark py-3 px-0 bg-transparent small" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                        When is the monthly tuition fee due?
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#feeFAQ">
+                                    <div class="accordion-body px-0 small text-muted">
+                                        Fee vouchers are issued on the 1st of every month and must be paid on or before the <strong>10th of each month</strong> to avoid late surcharges.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item border-bottom">
+                                <h2 class="accordion-header" id="faqTwo">
+                                    <button class="accordion-button collapsed fw-bold text-dark py-3 px-0 bg-transparent small" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                        Is Security Deposit / Caution Money refundable?
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#feeFAQ">
+                                    <div class="accordion-body px-0 small text-muted">
+                                        Yes, the security caution deposit is 100% refundable at the time of school leaving upon official clearance certificate.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faqThree">
+                                    <button class="accordion-button collapsed fw-bold text-dark py-3 px-0 bg-transparent small" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                        Are Secondary Board Examination Fees included?
+                                    </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#feeFAQ">
+                                    <div class="accordion-body px-0 small text-muted">
+                                        No, Board of Secondary Education registration and examination fees are billed separately according to official board schedules.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Faculty & Leadership Section -->
+    <section class="py-4 py-md-5 bg-white" id="faculty">
+        <div class="container">
+            <div class="text-center mb-4 mb-md-5" data-aos="fade-up">
+                <h2 class="fw-bold text-primary h3 fs-2-md">Smart School Leadership & Educators</h2>
+                <p class="text-muted small">Meet the dedicated leaders and faculty members guiding excellence at The Smart School</p>
+                <div class="mx-auto" style="width: 80px; height: 3px; background-color: #0d6efd;"></div>
+            </div>
+
+            <div class="row g-4 pt-2 justify-content-center">
+                <!-- Leader 1: Rabia Zain -->
+                <div class="col-lg-3 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card faculty-card text-center p-3 p-md-4">
+                        <div>
+                            <div class="faculty-img-wrapper">
+                                <img src="../imgs/principal smart.png" alt="Rabia Zain" class="faculty-img" onError="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80';">
+                            </div>
+                            <h5 class="fw-bold mt-2 mb-1">Rabia Zain</h5>
+                            <span class="badge bg-primary px-3 py-1 rounded-pill mb-3">Principal</span>
+                            <p class="text-muted small">Dedicated leader fostering holistic development, academic excellence, and continuous faculty growth.</p>
+                        </div>
+                        <button class="btn btn-outline-primary rounded-pill w-100 mt-3 small" data-bs-toggle="modal" data-bs-target="#modalRabia">
+                            <i class="fas fa-user-circle me-1"></i> View Profile
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Leader 2: Farheen Ashraf -->
+                <div class="col-lg-3 col-sm-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card faculty-card text-center p-3 p-md-4">
+                        <div>
+                            <div class="faculty-img-wrapper">
+                                <img src="../imgs/fahreen smart.jpg" alt="Farheen Ashraf" class="faculty-img" onError="this.src='https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80';">
+                            </div>
+                            <h5 class="fw-bold mt-2 mb-1">Farheen Ashraf</h5>
+                            <span class="badge bg-success px-3 py-1 rounded-pill mb-3">Senior Educator</span>
+                            <p class="text-muted small">Experienced teacher employing modern and traditional techniques to foster a love for lifelong learning.</p>
+                        </div>
+                        <button class="btn btn-outline-primary rounded-pill w-100 mt-3 small" data-bs-toggle="modal" data-bs-target="#modalFarheen">
+                            <i class="fas fa-user-circle me-1"></i> View Profile
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Leader 3: Ms. Aniqa -->
+                <div class="col-lg-3 col-sm-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card faculty-card text-center p-3 p-md-4">
+                        <div>
+                            <div class="faculty-img-wrapper">
+                                <img src="../imgs/aniqa smart.jpg" alt="Ms. Aniqa" class="faculty-img" onError="this.src='https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=400&q=80';">
+                            </div>
+                            <h5 class="fw-bold mt-2 mb-1">Ms. Aniqa</h5>
+                            <span class="badge bg-info text-dark px-3 py-1 rounded-pill mb-3">Academic Educator</span>
+                            <p class="text-muted small">Passionate educator combining interactive lessons, hands-on learning, and essential life skills.</p>
+                        </div>
+                        <button class="btn btn-outline-primary rounded-pill w-100 mt-3 small" data-bs-toggle="modal" data-bs-target="#modalAniqa">
+                            <i class="fas fa-user-circle me-1"></i> View Profile
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Leader 4: Mr. Sufiyan -->
+                <div class="col-lg-3 col-sm-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card faculty-card text-center p-3 p-md-4">
+                        <div>
+                            <div class="faculty-img-wrapper">
+                                <img src="../imgs/sufiyan smart.jpeg" alt="Mr. Sufiyan" class="faculty-img" onError="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80';">
+                            </div>
+                            <h5 class="fw-bold mt-2 mb-1">Mr. Sufiyan</h5>
+                            <span class="badge bg-secondary px-3 py-1 rounded-pill mb-3">Secondary Educator</span>
+                            <p class="text-muted small">Inspiring teacher focusing on interactive learning, clarity, and personalized guidance for students.</p>
+                        </div>
+                        <button class="btn btn-outline-primary rounded-pill w-100 mt-3 small" data-bs-toggle="modal" data-bs-target="#modalSufiyan">
+                            <i class="fas fa-user-circle me-1"></i> View Profile
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="py-4 py-md-5 bg-light" id="gallery">
+        <div class="container">
+            <div class="text-center mb-4 mb-md-5" data-aos="fade-up">
+                <span class="badge bg-primary-subtle text-primary fw-bold px-3 py-2 rounded-pill mb-2">CAMPUS TOUR</span>
+                <h2 class="fw-bold text-primary h3 fs-2-md">The Smart School Gallery & Facilities</h2>
+                <p class="text-muted small">Click on any picture to view full details</p>
+                <div class="mx-auto" style="width: 80px; height: 3px; background-color: #0d6efd;"></div>
+            </div>
+
+            <div class="row g-3 g-md-4">
+                <!-- Gallery 1 -->
+                <div class="col-lg-4 col-sm-6" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal1">
+                        <img src="../imgs/smart.jpeg" alt="Smart School Building" onError="this.src='https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=800&q=80';">
+                        <div class="gallery-overlay">
+                            <h6 class="fw-bold mb-1 text-white fs-6">Modern School Campus</h6>
+                            <span class="badge bg-light text-dark mb-1 shadow-sm small"><i class="fas fa-search-plus me-1 text-primary"></i> Click for Details</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery 2 -->
+                <div class="col-lg-4 col-sm-6" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal2">
+                        <img src="../imgs/smart 1.jpeg" alt="Smart Play Area" onError="this.src='https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80';">
+                        <div class="gallery-overlay">
+                            <h6 class="fw-bold mb-1 text-white fs-6">Play Grounds & Activity Zone</h6>
+                            <span class="badge bg-light text-dark mb-1 shadow-sm small"><i class="fas fa-search-plus me-1 text-primary"></i> Click for Details</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery 3 -->
+                <div class="col-lg-4 col-sm-6" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal3">
+                        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80" alt="Smart Board Classroom">
+                        <div class="gallery-overlay">
+                            <h6 class="fw-bold mb-1 text-white fs-6">Smart Board Digital Classrooms</h6>
+                            <span class="badge bg-light text-dark mb-1 shadow-sm small"><i class="fas fa-search-plus me-1 text-primary"></i> Click for Details</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery 4 -->
+                <div class="col-lg-4 col-sm-6" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal4">
+                        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80" alt="Computer Lab">
+                        <div class="gallery-overlay">
+                            <h6 class="fw-bold mb-1 text-white fs-6">IT & Science Laboratories</h6>
+                            <span class="badge bg-light text-dark mb-1 shadow-sm small"><i class="fas fa-search-plus me-1 text-primary"></i> Click for Details</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery 5 -->
+                <div class="col-lg-4 col-sm-6" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal5">
+                        <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=800&q=80" alt="Library">
+                        <div class="gallery-overlay">
+                            <h6 class="fw-bold mb-1 text-white fs-6">Central Digital Library</h6>
+                            <span class="badge bg-light text-dark mb-1 shadow-sm small"><i class="fas fa-search-plus me-1 text-primary"></i> Click for Details</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery 6 -->
+                <div class="col-lg-4 col-sm-6" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal6">
+                        <img src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=800&q=80" alt="Activity Hall">
+                        <div class="gallery-overlay">
+                            <h6 class="fw-bold mb-1 text-white fs-6">Multi-Purpose Activity Hall</h6>
+                            <span class="badge bg-light text-dark mb-1 shadow-sm small"><i class="fas fa-search-plus me-1 text-primary"></i> Click for Details</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Google Maps Section -->
+    <section class="py-4 py-md-5 bg-white">
+        <div class="container" data-aos="fade-up">
+            <div class="text-center mb-4">
+                <h2 class="fw-bold text-primary h3 fs-2-md">Find Us on the Map</h2>
+                <p class="text-muted small">Visit The Smart School Clifton Campus location in Karachi</p>
+            </div>
+            <!-- Responsive Map Wrapper -->
+            <div class="ratio map-ratio shadow rounded-4 overflow-hidden">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3621.414728111587!2d67.00773037442802!3d24.81548694705753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33db1563f18a9%3A0x5c2efaff44c5cf8e!2sThe%20Smart%20School%20Clifton%20Campus!5e0!3m2!1sen!2s!4v1738216182992!5m2!1sen!2s" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= MODALS SECTION ================= -->
+
+    <!-- Modal: Online Admission Application Form -->
+    <div class="modal fade" id="modalApplyOnline" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content rounded-4 border-0 shadow-lg">
+                <div class="modal-header border-0 bg-primary text-white">
+                    <h5 class="modal-title fw-bold fs-6"><i class="fas fa-edit me-2"></i>The Smart School Online Admission Application</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-3 p-md-4">
+                    <form onsubmit="event.preventDefault(); alert('Application submitted successfully! Smart School Admissions Team will contact you shortly.');">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small">Candidate Full Name *</label>
+                                <input type="text" class="form-control form-control-sm" placeholder="Child's full name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small">Date of Birth *</label>
+                                <input type="date" class="form-control form-control-sm" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small">Candidate NADRA B-Form No. *</label>
+                                <input type="text" class="form-control form-control-sm" placeholder="42101-XXXXXXX-X" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small">Applying for Grade *</label>
+                                <select class="form-select form-select-sm" required>
+                                    <option value="">Select Grade</option>
+                                    <option>Pre-School (Playgroup/KG)</option>
+                                    <option>Grades 1 to 5 (Primary)</option>
+                                    <option>Grades 6 to 10 (Secondary)</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small">Father / Guardian Name *</label>
+                                <input type="text" class="form-control form-control-sm" placeholder="Father's name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small">Father CNIC No. *</label>
+                                <input type="text" class="form-control form-control-sm" placeholder="42101-XXXXXXX-X" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small">Contact Phone No. *</label>
+                                <input type="tel" class="form-control form-control-sm" placeholder="0300-XXXXXXX" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small">Email Address *</label>
+                                <input type="email" class="form-control form-control-sm" placeholder="name@domain.com" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-bold small">Residential Address *</label>
+                                <textarea class="form-control form-control-sm" rows="2" placeholder="Complete home address" required></textarea>
+                            </div>
+                        </div>
+                        <div class="mt-4 text-end">
+                            <button type="button" class="btn btn-secondary btn-sm rounded-pill me-2" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary btn-sm rounded-pill px-4 pulse-btn"><i class="fas fa-paper-plane me-1"></i> Submit Application</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Admission Required Documents Detail -->
+    <div class="modal fade" id="modalAdmissionDocs" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content rounded-4 border-0 shadow-lg">
+                <div class="modal-header border-0 bg-primary text-white">
+                    <h5 class="modal-title fw-bold fs-6"><i class="fas fa-folder-open me-2"></i>Mandatory Documents Checklist</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-3 p-md-4">
+                    <h6 class="fw-bold text-dark">Requirements for Admission Registration:</h6>
+                    <ul class="small text-muted lh-lg">
+                        <li>Photocopy of Candidate's Official NADRA Birth Certificate / B-Form.</li>
+                        <li>Attested Photocopies of CNIC of both Parents (Father & Mother).</li>
+                        <li>Photocopy of NADRA COVID-19 / Child Vaccination Card.</li>
+                        <li>Two (2) recent official passport-sized color photographs with white background.</li>
+                        <li>Character appraisal and clearance certificate from previous school.</li>
+                        <li>Original Report Cards and transcripts of previous academic years.</li>
+                    </ul>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary btn-sm rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leadership Modals -->
+    <div class="modal fade" id="modalRabia" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content rounded-4 border-0">
+                <div class="modal-header border-0 bg-primary text-white">
+                    <h5 class="modal-title fw-bold fs-6"><i class="fas fa-user-tie me-2"></i>Principal Profile</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-3 p-md-4">
+                    <div class="text-center mb-3">
+                        <img src="../imgs/principal smart.png" class="rounded-circle shadow mb-3" style="width: 110px; height: 110px; object-fit: cover;" alt="Rabia Zain" onError="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80';">
+                        <h4 class="fw-bold fs-5">Rabia Zain</h4>
+                        <span class="badge bg-primary fs-6">Principal</span>
+                    </div>
+                    <p class="small text-muted">Rabia Zain is the esteemed Principal of Smart School, a dedicated leader with a vision to provide high-quality education and foster an environment that encourages both academic excellence and personal growth.</p>
+                    <p class="small text-muted mb-0">Under her leadership, Smart School consistently maintains a focus on holistic development, promoting innovation in teaching, and creating an inclusive, nurturing environment for every student.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalFarheen" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content rounded-4 border-0">
+                <div class="modal-header border-0 bg-primary text-white">
+                    <h5 class="modal-title fw-bold fs-6"><i class="fas fa-chalkboard-teacher me-2"></i>Educator Profile</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-3 p-md-4">
+                    <div class="text-center mb-3">
+                        <img src="../imgs/fahreen smart.jpg" class="rounded-circle shadow mb-3" style="width: 110px; height: 110px; object-fit: cover;" alt="Farheen Ashraf" onError="this.src='https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80';">
+                        <h4 class="fw-bold fs-5">Farheen Ashraf</h4>
+                        <span class="badge bg-success fs-6">Senior Educator</span>
+                    </div>
+                    <p class="small text-muted mb-0">Farheen Ashraf is an experienced teacher known for her passion for educating young minds. She utilizes innovative teaching methods combining traditional and modern techniques to build strong relationships with students and make learning engaging.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalAniqa" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content rounded-4 border-0">
+                <div class="modal-header border-0 bg-primary text-white">
+                    <h5 class="modal-title fw-bold fs-6"><i class="fas fa-chalkboard-teacher me-2"></i>Educator Profile</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-3 p-md-4">
+                    <div class="text-center mb-3">
+                        <img src="../imgs/aniqa smart.jpg" class="rounded-circle shadow mb-3" style="width: 110px; height: 110px; object-fit: cover;" alt="Ms. Aniqa" onError="this.src='https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=400&q=80';">
+                        <h4 class="fw-bold fs-5">Ms. Aniqa</h4>
+                        <span class="badge bg-info text-dark fs-6">Academic Educator</span>
+                    </div>
+                    <p class="small text-muted mb-0">Aniqa is a highly dedicated educator centered around creating positive learning environments that foster curiosity. She incorporates hands-on learning, interactive lessons, and real-world connections while helping students develop essential life skills.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalSufiyan" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content rounded-4 border-0">
+                <div class="modal-header border-0 bg-primary text-white">
+                    <h5 class="modal-title fw-bold fs-6"><i class="fas fa-chalkboard-teacher me-2"></i>Educator Profile</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-3 p-md-4">
+                    <div class="text-center mb-3">
+                        <img src="../imgs/sufiyan smart.jpeg" class="rounded-circle shadow mb-3" style="width: 110px; height: 110px; object-fit: cover;" alt="Mr. Sufiyan" onError="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80';">
+                        <h4 class="fw-bold fs-5">Mr. Sufiyan</h4>
+                        <span class="badge bg-secondary fs-6">Secondary Educator</span>
+                    </div>
+                    <p class="small text-muted mb-0">Sufiyan emphasizes clarity, creativity, and student involvement in his teaching approach. He creates an inclusive classroom environment catering to different learning needs to inspire students to excel both academically and personally.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Image Detail Modals -->
+    <div class="modal fade" id="galleryModal1" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content rounded-4 border-0 overflow-hidden shadow-lg">
+                <img src="../imgs/smart.jpeg" class="img-fluid w-100" style="max-height: 320px; object-fit: cover;" alt="Campus Building" onError="this.src='https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=1000&q=80';">
+                <div class="modal-body p-3 p-md-4">
+                    <h4 class="fw-bold text-primary fs-5">Modern School Campus</h4>
+                    <p class="text-muted small">The Smart School campus offers purpose-built, secure infrastructure designed for tech-driven learning, sports activities, and holistic child development.</p>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary btn-sm rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="galleryModal2" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content rounded-4 border-0 overflow-hidden shadow-lg">
+                <img src="../imgs/smart 1.jpeg" class="img-fluid w-100" style="max-height: 320px; object-fit: cover;" alt="Play Grounds" onError="this.src='https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1000&q=80';">
+                <div class="modal-body p-3 p-md-4">
+                    <h4 class="fw-bold text-primary fs-5">Play Grounds & Sports Activities</h4>
+                    <p class="text-muted small">Dedicated play and sports facilities encouraging physical education, teamwork, and co-curricular outdoor activities.</p>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary btn-sm rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="galleryModal3" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content rounded-4 border-0 overflow-hidden shadow-lg">
+                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1000&q=80" class="img-fluid w-100" style="max-height: 320px; object-fit: cover;" alt="Smart Classrooms">
+                <div class="modal-body p-3 p-md-4">
+                    <h4 class="fw-bold text-primary fs-5">Smart Board Digital Classrooms</h4>
+                    <p class="text-muted small">Interactive smart boards in classrooms allow teachers to deliver dynamic e-learning lessons and visual educational content.</p>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary btn-sm rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="galleryModal4" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content rounded-4 border-0 overflow-hidden shadow-lg">
+                <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1000&q=80" class="img-fluid w-100" style="max-height: 320px; object-fit: cover;" alt="IT Lab">
+                <div class="modal-body p-3 p-md-4">
+                    <h4 class="fw-bold text-primary fs-5">IT & Science Laboratories</h4>
+                    <p class="text-muted small">State-of-the-art computer labs and science equipment ensuring students gain essential digital literacy and practical scientific experience.</p>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary btn-sm rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="galleryModal5" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content rounded-4 border-0 overflow-hidden shadow-lg">
+                <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=1000&q=80" class="img-fluid w-100" style="max-height: 320px; object-fit: cover;" alt="Library">
+                <div class="modal-body p-3 p-md-4">
+                    <h4 class="fw-bold text-primary fs-5">Central Knowledge Library</h4>
+                    <p class="text-muted small">Houses thousands of educational resources, reference books, and e-learning reading material for student research.</p>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary btn-sm rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="galleryModal6" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content rounded-4 border-0 overflow-hidden shadow-lg">
+                <img src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1000&q=80" class="img-fluid w-100" style="max-height: 320px; object-fit: cover;" alt="Activity Hall">
+                <div class="modal-body p-3 p-md-4">
+                    <h4 class="fw-bold text-primary fs-5">Multi-Purpose Activity Hall</h4>
+                    <p class="text-muted small">Spacious hall hosting indoor games, school competitions, art exhibitions, and cultural student celebrations.</p>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary btn-sm rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer section -->
+    <footer id="contact" class="footer_wrapper pt-4 pt-md-5">
+        <div class="container pb-4">
+            <div class="row g-4">
+                <div class="col-lg-3 col-sm-6">
+                    <h5 class="text-white mb-3 fs-6">School Info</h5>
+                    <ul class="list-unstyled contact-info small">
+                        <li class="mb-2"><i class="fa fa-map-marker-alt me-2 text-primary"></i> Clifton Block 2, Karachi, Pakistan</li>
+                        <li class="mb-2"><i class="fa fa-phone me-2 text-primary"></i> +92 21 35821212</li>
+                        <li class="mb-2"><i class="fa fa-envelope me-2 text-primary"></i> info@thesmartschools.edu.pk</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <h5 class="text-white mb-3 fs-6">Quick Links</h5>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="#">Home</a></li>
+                        <li class="mb-2"><a href="#about">About School</a></li>
+                        <li class="mb-2"><a href="#admission">Admissions</a></li>
+                        <li class="mb-2"><a href="#fees">Fee Structure</a></li>
+                        <li class="mb-2"><a href="#gallery">Our Gallery</a></li>
+                        <li class="mb-2"><a href="html/contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <h5 class="text-white mb-3 fs-6">Other Schools</h5>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="html/bvs.html">BVS Parsi School</a></li>
+                        <li class="mb-2"><a href="html/kgs.html">Karachi Grammar School</a></li>
+                        <li class="mb-2"><a href="html/city.html">The City School</a></li>
+                        <li class="mb-2"><a href="html/smart.html">The Smart School</a></li>
+                        <li class="mb-2"><a href="html/hhs.html">Happy Home School</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <h5 class="text-white mb-3 fs-6">Stay Connected</h5>
+                    <div class="d-flex gap-3 fs-5">
+                        <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-dark text-center py-3 border-top border-secondary">
+            <p class="mb-0 small text-muted">&copy; School Info. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <!-- Footer section exit -->
+    
+    <!-- Bootstrap 5 JS Bundle CDN Link (Includes Popper.js for Dropdowns & Modals) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!-- AOS Animation JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <!-- Custom Js Link -->
+    <script src="../js/main.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Initialize AOS Animations
+            AOS.init({
+                duration: 1000,
+                easing: 'ease-in-out',
+                once: true,
+                mirror: false
+            });
+
+            // Swiper Slider Init with Autoplay & Responsive Setup
+            var swiper = new Swiper(".mySwiper", {
+                loop: true,
+                grabCursor: true,
+                effect: 'slide',
+                autoplay: {
+                    delay: 4500,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+            });
+
+            // Close navbar collapse on mobile link click
+            const navLinks = document.querySelectorAll('.menu-navbar-nav .nav-link:not(.dropdown-toggle)');
+            const menuCollapse = document.getElementById('navbarNav');
+            
+            navLinks.forEach((link) => {
+                link.addEventListener('click', () => {
+                    if (menuCollapse.classList.contains('show')) {
+                        var bsCollapse = new bootstrap.Collapse(menuCollapse);
+                        bsCollapse.hide();
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
